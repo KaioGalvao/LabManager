@@ -1,10 +1,38 @@
-﻿using Microsoft.Data.Sqlite;
+﻿/*
+CRUD (CREATE, READ, UPDATE, DELETE)
+Computer - Id, Ram, Processor
+dotnet run -- Computer List
+dotnet run -- Computer New 1 '16' 'Intel Dual Core'
+dotnet run -- Computer Delete 1
+dotnet run -- Computer Update 1 '8' 'Intel Dual Core'
+dotnet run -- Computer Show 1
+Lab - Id, Number, Name, Block
+dotnet run -- Lab List
+dotnet run -- Lab New 1 '2' 'Charles ...' '2'
+dotnet run -- Lab Delete 1
+dotnet run -- Lab Update 1 '2' 'Charles ...' '2'
+dotnet run -- Lab Show 1
+foreach (var arg in args)
+{
+    Console.WriteLine(arg);
+}
+dotnet add package Microsoft.Data.Sqlite
+dotnet add package Microsoft.Data.Sqlite -s 'C:\Users\IFSP\.nuget\packages'
+
+
+
+*/
+
+
+using Microsoft.Data.Sqlite;
 using LabManager.Database;
 using LabManager.Repositories;
 
-var databaseSetup = new DatabaseSetup();
 
 
+var databaseConfig = new DatabaseConfig();
+
+var databaseSetup = new DatabaseSetup(databaseConfig);
 
 //Routing
 var modelName = args[0];
@@ -13,7 +41,7 @@ var modelAction = args[1];
 if (modelName == "Computer")
 {
 
-    var computerRepository = new ComputerRepository();
+    var computerRepository = new ComputerRepository(databaseConfig);
     
     if (modelAction == "List")
     {   
