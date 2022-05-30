@@ -91,4 +91,23 @@ class ComputerRepository
 
     }
 
+    public Computer Update(Computer computer)
+    {   
+        var connection = new SqliteConnection(_databaseConfig.ConnectionString);
+        connection.Open();
+        var command = connection.CreateCommand();
+
+        command.CommandText = $"UPDATE Computers SET ram = $ram, processor = $processor WHERE ID = $id;";
+
+        command.Parameters.AddWithValue("$id", computer.Id);
+        command.Parameters.AddWithValue("$ram", computer.Ram);
+        command.Parameters.AddWithValue("$processor", computer.Processor);
+
+        command.ExecuteNonQuery();
+
+        connection.Close();
+
+        return computer;
+    }
+
 }
