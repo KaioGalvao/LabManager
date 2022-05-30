@@ -83,28 +83,6 @@ if (modelName == "Computer")
             break;
         }
     }
-
-    
-    /*
-    if (modelAction == "List")
-    {   
-        Console.WriteLine("Lista de computadores:");
-        
-        foreach (var computer in computerRepository.GetAll())
-        {
-            Console.WriteLine($"{computer.Id}, {computer.Ram}, {computer.Processor}");
-        }
-    }
-
-    else if (modelAction == "New")
-    {
-        var id = Convert.ToInt32(args[2]);
-        var ram = args[3];
-        var processor = args[4];
-        var computer = new Computer(id, ram, processor);
-        
-        computerRepository.Save(computer);
-    }*/
 }
 
 

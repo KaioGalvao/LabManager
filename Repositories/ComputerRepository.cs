@@ -91,11 +91,4 @@ class ComputerRepository
 
     }
 
-
-    /*
-    public void Save(int id, string ram, string processor)
-    {
-
-    }
-    */
 }
