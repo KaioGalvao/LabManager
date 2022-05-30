@@ -38,10 +38,54 @@ var modelName = args[0];
 var modelAction = args[1];
 
 if (modelName == "Computer")
-{
-
+{   
     var computerRepository = new ComputerRepository(databaseConfig);
+
+    switch (modelAction)
+    {   
+        case "List" :
+        {
+            Console.WriteLine("Lista de computadores:");
+        
+            foreach (var computer in computerRepository.GetAll())
+            {
+                Console.WriteLine($"{computer.Id}, {computer.Ram}, {computer.Processor}");
+            }
+
+            break;
+        }
+
+        case "New" :
+        {
+            var id = Convert.ToInt32(args[2]);
+            var ram = args[3];
+            var processor = args[4];
+            var computer = new Computer(id, ram, processor);
+            computerRepository.Save(computer);
+
+            break;
+        }
+
+        case "Show" :
+        {
+            var id = Convert.ToInt32(args[2]);
+
+            var computer = computerRepository.GetById(id);
+
+            Console.WriteLine($"{computer.Id}, {computer.Ram}, {computer.Processor}");
+
+            break;
+        }
+        
+        default: 
+        {
+            Console.WriteLine("Comando inválido");
+            break;
+        }
+    }
+
     
+    /*
     if (modelAction == "List")
     {   
         Console.WriteLine("Lista de computadores:");
@@ -57,13 +101,10 @@ if (modelName == "Computer")
         var id = Convert.ToInt32(args[2]);
         var ram = args[3];
         var processor = args[4];
-
         var computer = new Computer(id, ram, processor);
-
+        
         computerRepository.Save(computer);
-        
-        
-    }
+    }*/
 }
 
 
@@ -74,46 +115,46 @@ else if (modelName == "Lab")
     switch (modelAction)
     {
         case "New":
-            {
-                var id = Convert.ToInt32(args[2]);
-                var number = args[3];
-                var name = args[4];
-                var block = args[5];
-                var connection = new SqliteConnection("Data Source=database.db");
-                connection.Open();
-                var command = connection.CreateCommand();
+        {
+            var id = Convert.ToInt32(args[2]);
+            var number = args[3];
+            var name = args[4];
+            var block = args[5];
+            var connection = new SqliteConnection("Data Source=database.db");
+            connection.Open();
+            var command = connection.CreateCommand();
 
-                command.CommandText = $"INSERT INTO Labs VALUES($id, $number, $name, $block)";
+            command.CommandText = $"INSERT INTO Labs VALUES($id, $number, $name, $block)";
 
-                command.Parameters.AddWithValue("$id", id);
-                command.Parameters.AddWithValue("$number", number);
-                command.Parameters.AddWithValue("$name", name);
-                command.Parameters.AddWithValue("$block", block);
+            command.Parameters.AddWithValue("$id", id);
+            command.Parameters.AddWithValue("$number", number);
+            command.Parameters.AddWithValue("$name", name);
+            command.Parameters.AddWithValue("$block", block);
 
-                command.ExecuteNonQuery();
+            command.ExecuteNonQuery();
 
-                connection.Close();
+            connection.Close();
 
-                break;
-            }
+            break;
+        }
         case "List":
+        {
+            var connection = new SqliteConnection("Data Source=database.db");
+            connection.Open();
+            var command = connection.CreateCommand();
+
+            command.CommandText = $"SELECT * FROM Labs;";
+
+            var reader = command.ExecuteReader();
+
+            while (reader.Read())
             {
-                var connection = new SqliteConnection("Data Source=database.db");
-                connection.Open();
-                var command = connection.CreateCommand();
-
-                command.CommandText = $"SELECT * FROM Labs;";
-
-                var reader = command.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    Console.WriteLine($"{reader.GetInt32(0)} {reader.GetString(1)} {reader.GetString(2)} {reader.GetString(3)}");
-                }
-
-                connection.Close();
-                break;
+                Console.WriteLine($"{reader.GetInt32(0)} {reader.GetString(1)} {reader.GetString(2)} {reader.GetString(3)}");
             }
+
+            connection.Close();
+            break;
+        }
         default:
             Console.WriteLine("Comando inválido");
             break;
