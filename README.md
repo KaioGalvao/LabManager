@@ -6,6 +6,12 @@ Aplicação que gerencia dados de computadores e laboratórios em um banco de da
 
 - Cadastro e listagem de computadores
 
+- Mostrar computador por ID
+
+- Atualizar dados de um computador
+
+- Deletar um computador
+
 - Cadastro e listagem de laboratórios
 
 
@@ -28,6 +34,18 @@ Para exibir esses dados utilize:
  ```
  dotnet run -- Computer List
  ```
+Para atualizar os dados do computador, utilize: 
+```
+dotnet run -- Computer Update id ram processor
+```
+Para mostrar os dados do computador por id, utilize: 
+```
+dotnet run -- Computer Show id
+```
+Para deletar um computador cadastrado, utilize: 
+```
+dotnet run -- Computer Delete id
+```
 
 Para a inserção de dados na tabela Laboratório, utilize o seguinte comando:
  ```
