@@ -90,6 +90,14 @@ if (modelName == "Computer")
             break;
         }
         
+        case "Delete" :
+        {
+            var id = Convert.ToInt32(args[2]);
+
+            computerRepository.Delete(id);
+            break;
+        }
+
         default: 
         {
             Console.WriteLine("Comando inválido");
