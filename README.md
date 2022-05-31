@@ -12,6 +12,7 @@ Aplicação que gerencia dados de computadores e laboratórios em um banco de da
 ## Tecnologias utilizadas
 
 - dotnet 6.0
+- Sqlite
 
 ## Uso
 
