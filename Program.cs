@@ -65,23 +65,35 @@ if (modelName == "Computer")
         }
 
         case "Show" :
-        {
+        {   
+            
             var id = Convert.ToInt32(args[2]);
-            var computer = computerRepository.GetById(id);
 
-            Console.WriteLine($"{computer.Id}, {computer.Ram}, {computer.Processor}");
-
+            if (computerRepository.ExistsById(id))
+            {
+                var computer = computerRepository.GetById(id);
+                Console.WriteLine($"{computer.Id}, {computer.Ram}, {computer.Processor}");
+            } 
+            else {
+                Console.WriteLine($"Computador com id = {id} não existe.");
+            } 
+            
             break;
         }
 
         case "Update" :
         {
             var id = Convert.ToInt32(args[2]);
-            var ram = args[3];
-            var processor = args[4];
-            
-            var computer = new Computer(id, ram, processor);
-            computer = computerRepository.Update(computer);
+
+            if(computerRepository.ExistsById(id)){
+                var ram = args[3];
+                var processor = args[4];
+                var computer = new Computer(id, ram, processor);
+                computer = computerRepository.Update(computer);
+            }
+            else {
+                Console.WriteLine($"Computador com id = {id} não existe.");
+            }    
             
             break;
         }
@@ -89,15 +101,21 @@ if (modelName == "Computer")
         case "Delete" :
         {
             var id = Convert.ToInt32(args[2]);
-
-            computerRepository.Delete(id);
-            
+            if (computerRepository.ExistsById(id))
+            {
+                computerRepository.Delete(id);
+            }
+            else {
+               Console.WriteLine($"Computador com id = {id} não existe."); 
+            }
+        
             break;
         }
 
         default: 
         {
             Console.WriteLine("Comando inválido");
+            
             break;
         }
     }
