@@ -4,7 +4,13 @@ Aplicação que gerencia dados de computadores e laboratórios em um banco de da
 
 ## Funcionalidades
 
-- Cadastro e listagem de computadores
+- Cadastro de computadores
+
+- Listagem de computadores
+
+- Atualização de computadores
+
+- Deleção de computadores
 
 - Cadastro e listagem de laboratórios
 
