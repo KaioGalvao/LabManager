@@ -18,9 +18,6 @@ foreach (var arg in args)
 }
 dotnet add package Microsoft.Data.Sqlite
 dotnet add package Microsoft.Data.Sqlite -s 'C:\Users\IFSP\.nuget\packages'
-
-
-
 */
 
 
@@ -35,7 +32,7 @@ var databaseSetup = new DatabaseSetup(databaseConfig);
 
 //Routing
 var modelName = args[0];
-var modelAction = args[1];
+var modelAction = args[1]; //Roteamento para executar partes do código
 
 if (modelName == "Computer")
 {   
@@ -51,6 +48,7 @@ if (modelName == "Computer")
             {
                 Console.WriteLine($"{computer.Id}, {computer.Ram}, {computer.Processor}");
             }
+            
 
             break;
         }
@@ -69,7 +67,6 @@ if (modelName == "Computer")
         case "Show" :
         {
             var id = Convert.ToInt32(args[2]);
-
             var computer = computerRepository.GetById(id);
 
             Console.WriteLine($"{computer.Id}, {computer.Ram}, {computer.Processor}");
@@ -84,7 +81,6 @@ if (modelName == "Computer")
             var processor = args[4];
             
             var computer = new Computer(id, ram, processor);
-
             computer = computerRepository.Update(computer);
             
             break;
@@ -95,6 +91,7 @@ if (modelName == "Computer")
             var id = Convert.ToInt32(args[2]);
 
             computerRepository.Delete(id);
+            
             break;
         }
 
