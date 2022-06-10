@@ -43,10 +43,10 @@ class DatabaseSetup{
 
         command.CommandText = @"
             CREATE TABLE IF NOT EXISTS Labs(
-                ID INT NOT NULL PRIMARY KEY,
-                Number VARCHAR(100) NOT NULL,
-                Name VARCHAR(100) NOT NULL,
-                Block VARCHAR(50) NOT NULL
+                id INT NOT NULL PRIMARY KEY,
+                number VARCHAR(100) NOT NULL,
+                name VARCHAR(100) NOT NULL,
+                block VARCHAR(50) NOT NULL
             );
         ";
 
