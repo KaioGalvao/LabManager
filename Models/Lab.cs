@@ -10,6 +10,8 @@ public class Lab
 
     public String Block { get; }
 
+    public Lab(){   }
+    
     public Lab(int id, String number, String name, String block)
     {
         Id = id;

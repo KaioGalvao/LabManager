@@ -167,6 +167,9 @@ else if (modelName == "Lab")
                 var lab =  labRepository.GetById(id);
                 Console.WriteLine($"{lab.Id},{lab.Number}, {lab.Name}, {lab.Block} ");
             }
+             else {
+               Console.WriteLine($"Lab com id = {id} não existe."); 
+            }
             
             break;
         }
